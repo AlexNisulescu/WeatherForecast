@@ -71,7 +71,14 @@ public class WeatherViewController {
         getCities(cty);
         cityBox.setItems(cityList);
 
+    }@FXML
+    public void citySelected(Event e) throws IOException {
+        System.out.println("Fetching weather for "+ cityBox.getValue().toString());
+        WeatherGather w=new WeatherGather(cityBox.getValue().toString());
+        w.apiRequest();
+
     }
+
     @FXML
     private void initialize()
     {
