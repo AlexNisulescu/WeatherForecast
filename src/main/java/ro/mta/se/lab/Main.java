@@ -40,7 +40,7 @@ public class Main extends Application {
         File myObj = new File(filename);
         Scanner myReader = new Scanner(myObj);
         String[][] cityInfo =new String[rows][cols];
-        String currentcty=new String();
+        String current;
         int j=0;
         while (myReader.hasNext()){
             for (int i=0; i<rows; i++)
@@ -48,8 +48,8 @@ public class Main extends Application {
                 String data = myReader.next();
                 cityInfo[i][j]=data;
             }
-            currentcty=cityInfo[rows-1][j];
-            if (checkExistence(currentcty, cityInfo, j)){
+            current=cityInfo[rows-1][j];
+            if (checkExistence(current, cityInfo, j)){
                 countryList.add(cityInfo[rows-1][j]);
             }
             j++;
