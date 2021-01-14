@@ -9,13 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import ro.mta.se.lab.model.City;
-import ro.mta.se.lab.model.Weather;
-import ro.mta.se.lab.model.WeatherGather;
+import ro.mta.se.lab.model.*;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import ro.mta.se.lab.model.jsonParser;
 
 import java.awt.*;
 import java.io.File;
@@ -29,9 +26,13 @@ public class WeatherViewController {
     ObservableList<String> cityList= FXCollections.observableArrayList();
     ObservableList<String> countryList= FXCollections.observableArrayList();
 
+    /***
+     * This is the constructor of the controller which is initiated in the main
+     * class with the list of the countries from the file
+     * @param countryList
+     */
     public WeatherViewController(ObservableList<String> countryList) {
         this.countryList = countryList;
-
     }
 
     @FXML
@@ -52,7 +53,14 @@ public class WeatherViewController {
     private Label feels;
     @FXML
     private Label precipit;
+    @FXML
+    private Label wind;
 
+    /***
+     *
+     * @param e
+     * @throws IOException
+     */
     @FXML
     public void buttonPressed(KeyEvent e) throws IOException {
         if(e.getCode() == KeyCode.ENTER)
@@ -78,8 +86,17 @@ public class WeatherViewController {
             feels.setText(s);
             s="Humidity: "+cw.getPrecipitations();
             precipit.setText(s);
+            Logger l=new Logger();
+            l.writeLogs(cw);
+            l.addNewCity(cw.getCity());
         }
     }
+
+    /***
+     *
+     * @param countryCode
+     * @throws FileNotFoundException
+     */
     public void getCities(String countryCode) throws FileNotFoundException {
         File myObj = new File("cities.txt");
         Scanner myReader = new Scanner(myObj);
@@ -101,16 +118,25 @@ public class WeatherViewController {
         }
     }
 
+    /***
+     *
+     * @param e
+     * @throws FileNotFoundException
+     */
     @FXML
     public void countrySelected(Event e) throws FileNotFoundException {
         cityList.clear();
         String cty=countryBox.getValue().toString();
-        System.out.println(cty);
         getCities(cty);
         cityBox.setItems(cityList);
 
     }
 
+    /***
+     *
+     * @param e
+     * @throws IOException
+     */
     @FXML
     public void citySelected(Event e) throws IOException {
         System.out.println("Fetching weather for "+ cityBox.getValue().toString());
@@ -134,13 +160,26 @@ public class WeatherViewController {
         feels.setText(s);
         s="Humidity: "+cw.getPrecipitations();
         precipit.setText(s);
+        s="Wind: "+ cw.getWind() + "m/s";
+        wind.setText(s);
+        Logger l=new Logger();
+        l.writeLogs(cw);
     }
 
+    /***
+     *
+     * @throws FileNotFoundException
+     */
     @FXML
     private void initialize() throws FileNotFoundException {
         countryBox.setItems(countryList);
     }
 
+    /***
+     *
+     * @param code
+     * @throws FileNotFoundException
+     */
     @FXML
     private void loadImage(String code) throws FileNotFoundException {
         String url1="http://openweathermap.org/img/w/"+code+".png";

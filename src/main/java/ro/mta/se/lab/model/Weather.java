@@ -4,6 +4,7 @@ public class Weather {
     private int precipitations;
     private float temperature;
     private float feels_like;
+    private float wind;
     private String weather;
     private City city;
 
@@ -16,6 +17,10 @@ public class Weather {
         this.feels_like = feels_like;
         this.weather = weather;
         this.city = city;
+    }
+
+    public void setWind(float wind) {
+        this.wind = wind;
     }
 
     public void setPrecipitations(int precipitations) {
@@ -36,6 +41,10 @@ public class Weather {
 
     public void setCity(City city) {
         this.city = city;
+    }
+
+    public float getWind() {
+        return wind;
     }
 
     public int getPrecipitations() {

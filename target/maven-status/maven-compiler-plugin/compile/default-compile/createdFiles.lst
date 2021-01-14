@@ -1,6 +1,7 @@
 ro\mta\se\lab\controller\WeatherViewController.class
 ro\mta\se\lab\model\Weather.class
 ro\mta\se\lab\model\WeatherGather.class
+ro\mta\se\lab\model\Logger.class
 ro\mta\se\lab\model\City.class
 ro\mta\se\lab\Main.class
 ro\mta\se\lab\model\jsonParser.class

@@ -5,6 +5,7 @@ public class City {
     private float lat;
     private float lon;
     private String countryCode;
+    private int id;
 
     public City() {
     }
@@ -24,6 +25,10 @@ public class City {
         System.out.println(countryCode);
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -38,6 +43,10 @@ public class City {
 
     public void setCountryCode(String countryCode) {
         this.countryCode = countryCode;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
