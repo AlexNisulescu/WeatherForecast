@@ -15,7 +15,7 @@ import java.net.URL;
 
 public class jsonParser {
     private City city=new City();
-    private Weather weather;
+    private Weather weather=new Weather();
     String weatherIconCode;
 
     public jsonParser() {
@@ -37,7 +37,12 @@ public class jsonParser {
         weatherIconCode = items.get(0).asObject().getString("icon", "Unknown Item");
         System.out.println(weatherIconCode);
 
-        city.showDetails();
+        weather.setCity(city);
+        weather.setTemperature(obj.get("main").asObject().get("temp").asFloat());
+        weather.setFeels_like(obj.get("main").asObject().get("feels_like").asFloat());
+        weather.setPrecipitations(obj.get("main").asObject().get("humidity").asInt());
+        weather.setWeather(items.get(0).asObject().getString("description", "Unknown Item"));
+        //city.showDetails();
     }
 
     public City getCity() {

@@ -16,7 +16,8 @@ public class WeatherGather {
     }
 
     public void apiRequest() throws IOException {
-        this.myUrl = new URL("http://api.openweathermap.org/data/2.5/weather?q="+ city+ "&appid=6159a870c03b130d2571733f23ffcbb6");
+        this.myUrl = new URL("http://api.openweathermap.org/data/2.5/weather?q="
+                + city+ "&appid=6159a870c03b130d2571733f23ffcbb6&units=metric");
         HttpURLConnection con =(HttpURLConnection) myUrl.openConnection();
         con.setRequestMethod("HEAD");
         if (con.getResponseCode() == HttpURLConnection.HTTP_OK)
