@@ -34,7 +34,8 @@
 |2986678    |Ploufragan |48.491409    |-2.794580    |FR        |
 
     Este important ca fisierul de intrare sa aiba structura aceasta!
-    Pentru a nu modifica aplicatia acesta trebuie sa fie pus in folderul de baza si sa se numeasca "cities.txt"
+    Pentru a nu modifica aplicatia acesta trebuie sa fie pus in folderul 
+    de baza si sa se numeasca "cities.txt"
 ***
 ## Limbaj
     JAVA -> SDK 15
