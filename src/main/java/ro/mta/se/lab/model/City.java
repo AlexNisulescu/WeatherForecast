@@ -1,22 +1,27 @@
 package ro.mta.se.lab.model;
 
 public class City {
-    private String id;
     private String name;
     private float lat;
     private float lon;
     private String countryCode;
 
-    public City(String id, String name, float lat, float lon, String countryCode) {
-        this.id = id;
+    public City() {
+    }
+
+    public City(String name, float lat, float lon, String countryCode) {
         this.name = name;
         this.lat = lat;
         this.lon = lon;
         this.countryCode = countryCode;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void showDetails()
+    {
+        System.out.println(name);
+        System.out.println(lat);
+        System.out.println(lon);
+        System.out.println(countryCode);
     }
 
     public void setName(String name) {
@@ -33,10 +38,6 @@ public class City {
 
     public void setCountryCode(String countryCode) {
         this.countryCode = countryCode;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getName() {
