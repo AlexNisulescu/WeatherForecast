@@ -7,7 +7,7 @@
 
 ## Cuprins
 - [Introducere](#Introducere)
-- [Utilizarea aplicatiei](#Utilizarea%20aplicatiei)
+- [Utilizarea aplicatiei](#Utilizarea aplicatiei)
 - [Limbaj](#Limbaj)
 - [Realizator](#Realizator)
 ***
