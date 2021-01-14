@@ -1,5 +1,7 @@
 .out/
+.target/
 *.txt
 *.jpg
 *.png
 *.json
+*.log
