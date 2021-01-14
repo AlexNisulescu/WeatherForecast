@@ -22,17 +22,18 @@
       </Label>
       <TextField fx:id="textField" layoutX="226.0" layoutY="143.0" onKeyPressed="#buttonPressed" />
       <ChoiceBox fx:id="cityBox" layoutX="350.0" layoutY="85.0" onAction="#citySelected" prefWidth="150.0" />
-      <ImageView fx:id="weatherImg" fitHeight="54.0" fitWidth="69.0" layoutX="50.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="cityName" layoutX="55.0" layoutY="273.0">
+      <ImageView fx:id="weatherImg" fitHeight="54.0" fitWidth="69.0" layoutX="60.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="cityName" layoutX="45.0" layoutY="250.0">
          <font>
             <Font name="Times New Roman" size="20.0" />
          </font></Label>
-      <Label fx:id="weather" layoutX="161.0" layoutY="265.0">
+      <Label fx:id="weather" layoutX="180.0" layoutY="265.0">
          <font>
             <Font name="Times New Roman" size="20.0" />
          </font></Label>
-      <Label fx:id="temp" layoutX="161.0" layoutY="291.0" />
-      <Label fx:id="feels" layoutX="161.0" layoutY="318.0" />
-      <Label fx:id="precipit" layoutX="161.0" layoutY="345.0" />
+      <Label fx:id="temp" layoutX="180.0" layoutY="290.0" />
+      <Label fx:id="feels" layoutX="180.0" layoutY="315.0" />
+      <Label fx:id="precipit" layoutX="180.0" layoutY="340.0" />
+      <Label fx:id="wind" layoutX="180.0" layoutY="365.0" />
    </children>
 </AnchorPane>

@@ -31,18 +31,19 @@ public class jsonParser {
         city.setLon(obj.get("coord").asObject().get("lon").asFloat());
         city.setLat(obj.get("coord").asObject().get("lat").asFloat());
         city.setCountryCode(obj.get("sys").asObject().get("country").asString());
+        city.setId(obj.get("id").asInt());
 
         JsonArray items = Json.parse(data).asObject().get("weather").asArray();
         weatherIconCode="";
         weatherIconCode = items.get(0).asObject().getString("icon", "Unknown Item");
-        System.out.println(weatherIconCode);
 
         weather.setCity(city);
         weather.setTemperature(obj.get("main").asObject().get("temp").asFloat());
         weather.setFeels_like(obj.get("main").asObject().get("feels_like").asFloat());
         weather.setPrecipitations(obj.get("main").asObject().get("humidity").asInt());
         weather.setWeather(items.get(0).asObject().getString("description", "Unknown Item"));
-        //city.showDetails();
+        weather.setWind(obj.get("wind").asObject().get("speed").asFloat());
+
     }
 
     public City getCity() {
