@@ -1,13 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane layoutX="47.0" layoutY="11.0" prefHeight="184.0" prefWidth="514.0" />
+      <ChoiceBox fx:id="countryBox" layoutX="100.0" layoutY="85.0" onAction="#countrySelected" prefWidth="150.0" />
+      <Label layoutX="320.0" layoutY="88.0" text="City" />
+      <Label layoutX="50.0" layoutY="88.0" text="Country" />
+      <Label layoutX="160.0" layoutY="120.0" text="Search for the city you want if it's not in the choice box:">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font></Label>
+      <Label layoutX="225.0" layoutY="28.0" prefHeight="44.0" prefWidth="165.0" text="Weather Forecast App">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textField" layoutX="226.0" layoutY="143.0" onKeyPressed="#buttonPressed" />
+      <ChoiceBox fx:id="cityBox" layoutX="350.0" layoutY="85.0" onAction="#citySelected" prefWidth="150.0" />
+      <ImageView fx:id="weatherImg" fitHeight="54.0" fitWidth="69.0" layoutX="50.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="cityName" layoutX="55.0" layoutY="273.0">
+         <font>
+            <Font name="Times New Roman" size="20.0" />
+         </font></Label>
+      <Label fx:id="weather" layoutX="161.0" layoutY="265.0">
+         <font>
+            <Font name="Times New Roman" size="20.0" />
+         </font></Label>
+      <Label fx:id="temp" layoutX="161.0" layoutY="291.0" />
+      <Label fx:id="feels" layoutX="161.0" layoutY="318.0" />
+      <Label fx:id="precipit" layoutX="161.0" layoutY="345.0" />
+   </children>
 </AnchorPane>

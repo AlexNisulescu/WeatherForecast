@@ -9,15 +9,14 @@ import javafx.stage.Stage;
 import ro.mta.se.lab.controller.WeatherViewController;
 import ro.mta.se.lab.model.City;
 import ro.mta.se.lab.model.WeatherGather;
+import ro.mta.se.lab.model.jsonParser;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 public class Main extends Application {
     private int rows=5;
-    private int cols=7;
+    private int cols;
     private ObservableList<String> countryList= FXCollections.observableArrayList();
 
     public static void main(String[] args) throws IOException {
@@ -56,8 +55,17 @@ public class Main extends Application {
         }
     }
 
+    public void getCols() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("cities.txt"));
+        int lines = 0;
+        while (reader.readLine() != null) lines++;
+        reader.close();
+        cols=lines;
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
+        getCols();
         initInfo("cities.txt");
         FXMLLoader loader=new FXMLLoader();
         try {
