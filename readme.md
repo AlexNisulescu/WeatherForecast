@@ -7,7 +7,7 @@
 
 ## Cuprins
 - [Introducere](#Introducere)
-- [Utilizarea aplicatiei](#Utilizarea aplicatiei)
+- [Utilizarea aplicatiei](#Utilizare)
 - [Limbaj](#Limbaj)
 - [Realizator](#Realizator)
 ***
@@ -17,7 +17,7 @@
     utilizatorul poate alege din choiceboxurile puse la dispozitie sau poate
     cauta orasul folosind searchboxul.
 ***
-## Utilizarea aplicatiei
+## Utilizare
     Odata pornita, aplicatia va contine doua casute, de unde utilizatorul va
     trebui sa selecteze tara si orasul pentru doreste sa afle prognoza meteo,
     sau un searchbox unde acesta va trebui sa introduca numele orasului cautat,
