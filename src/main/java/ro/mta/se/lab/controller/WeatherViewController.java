@@ -101,7 +101,6 @@ public class WeatherViewController {
         File myObj = new File("cities.txt");
         Scanner myReader = new Scanner(myObj);
         String[] cityInfo =new String[5];
-        String current;
         int j=0;
         cityList.clear();
         while (myReader.hasNext()){
@@ -110,9 +109,7 @@ public class WeatherViewController {
                 String data = myReader.next();
                 cityInfo[i]=data;
             }
-            current=cityInfo[4];
             if (cityInfo[4].equals(countryCode)){
-                //countryList.add(cityInfo[rows-1][j]);
                 cityList.add(cityInfo[1]);
             }
         }
@@ -125,6 +122,7 @@ public class WeatherViewController {
      */
     @FXML
     public void countrySelected(Event e) throws FileNotFoundException {
+        cityBox.getItems().clear();
         cityList.clear();
         String cty=countryBox.getValue().toString();
         getCities(cty);
@@ -139,31 +137,33 @@ public class WeatherViewController {
      */
     @FXML
     public void citySelected(Event e) throws IOException {
-        System.out.println("Fetching weather for "+ cityBox.getValue().toString());
-        WeatherGather w=new WeatherGather(cityBox.getValue().toString());
-        w.apiRequest();
-        jsonParser p=new jsonParser();
-        p.readWeatherJSON();
-        String code = p.getWeatherIconCode();
-        loadImage(code);
-        City current= new City();
-        Weather cw=new Weather();
-        current=p.getCity();
-        cw=p.getWeather();
-        String s="";
-        cityName.setText(current.getName());
-        s=cw.getWeather();
-        weather.setText(s);
-        s="Temperature: "+cw.getTemperature()+"°C";
-        temp.setText(s);
-        s="Feels like: "+cw.getFeels_like()+"°C";
-        feels.setText(s);
-        s="Humidity: "+cw.getPrecipitations();
-        precipit.setText(s);
-        s="Wind: "+ cw.getWind() + "m/s";
-        wind.setText(s);
-        Logger l=new Logger();
-        l.writeLogs(cw);
+        //System.out.println("Fetching weather for "+ cityBox.getValue().toString());
+        if (cityBox.getValue() != null){
+            WeatherGather w=new WeatherGather(cityBox.getValue().toString());
+            w.apiRequest();
+            jsonParser p=new jsonParser();
+            p.readWeatherJSON();
+            String code = p.getWeatherIconCode();
+            loadImage(code);
+            City current= new City();
+            Weather cw=new Weather();
+            current=p.getCity();
+            cw=p.getWeather();
+            String s="";
+            cityName.setText(current.getName());
+            s=cw.getWeather();
+            weather.setText(s);
+            s="Temperature: "+cw.getTemperature()+"°C";
+            temp.setText(s);
+            s="Feels like: "+cw.getFeels_like()+"°C";
+            feels.setText(s);
+            s="Humidity: "+cw.getPrecipitations();
+            precipit.setText(s);
+            s="Wind: "+ cw.getWind() + "m/s";
+            wind.setText(s);
+            Logger l=new Logger();
+            l.writeLogs(cw);
+        }
     }
 
     /***
