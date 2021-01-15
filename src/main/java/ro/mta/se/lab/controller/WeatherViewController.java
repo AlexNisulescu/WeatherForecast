@@ -63,7 +63,7 @@ public class WeatherViewController {
             loadImage(code);
             City current= new City();
             Weather cw=new Weather();
-            current=p.getCity();
+            current= cw.getCity();
             cw=p.getWeather();
             String s="";
             cityName.setText(current.getName());
@@ -124,7 +124,7 @@ public class WeatherViewController {
             loadImage(code);
             City current= new City();
             Weather cw=new Weather();
-            current=p.getCity();
+            current= cw.getCity();
             cw=p.getWeather();
             String s="";
             cityName.setText(current.getName());

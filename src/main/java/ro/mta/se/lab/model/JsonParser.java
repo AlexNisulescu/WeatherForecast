@@ -46,10 +46,6 @@ public class JsonParser {
 
     }
 
-    public City getCity() {
-        return city;
-    }
-
     public String getWeatherIconCode()
     {
         return weatherIconCode;
