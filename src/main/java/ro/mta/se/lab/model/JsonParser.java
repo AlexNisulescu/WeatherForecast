@@ -51,6 +51,10 @@ public class JsonParser {
         return weatherIconCode;
     }
 
+    public City getCity() {
+        return city;
+    }
+
     public Weather getWeather() {
         return weather;
     }

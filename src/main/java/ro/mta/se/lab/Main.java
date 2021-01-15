@@ -20,11 +20,11 @@ public class Main extends Application {
         launch(args);
     }
 
-    public boolean checkExistence(String cty, String list[][], int j){
+    public boolean checkExistence(String cty, String list[], int j){
 
         for (int i=0; i<j; i++)
         {
-            if (list[4][i].equals(cty))
+            if (list[i].equals(cty))
             {
                 return false;
             }
@@ -35,18 +35,16 @@ public class Main extends Application {
     public void initInfo(String filename) throws FileNotFoundException {
         File myObj = new File(filename);
         Scanner myReader = new Scanner(myObj);
-        String[][] cityInfo =new String[rows][cols];
+        String[] cityInfo =new String[cols];
+        String[] buffer;
         String current;
         int j=0;
-        while (myReader.hasNext()){
-            for (int i=0; i<rows; i++)
-            {
-                String data = myReader.next();
-                cityInfo[i][j]=data;
-            }
-            current=cityInfo[rows-1][j];
-            if (checkExistence(current, cityInfo, j)){
-                countryList.add(cityInfo[rows-1][j]);
+        while (myReader.hasNextLine()){
+            String data = myReader.nextLine();
+            buffer=data.split("\t");
+            cityInfo[j]=buffer[4];
+            if (checkExistence(buffer[4], cityInfo, j)){
+                countryList.add(cityInfo[j]);
             }
             j++;
         }
