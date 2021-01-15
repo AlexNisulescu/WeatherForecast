@@ -13,12 +13,12 @@ import java.nio.file.Paths;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class jsonParser {
+public class JsonParser {
     private City city=new City();
     private Weather weather=new Weather();
     String weatherIconCode;
 
-    public jsonParser() {
+    public JsonParser() {
     }
 
     public void readWeatherJSON() throws IOException {
