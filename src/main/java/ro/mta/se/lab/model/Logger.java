@@ -22,25 +22,53 @@ public class Logger {
 
     }
 
-    public void writeLogs(Weather weather) throws IOException {
+    public String writeLogs(Weather weather) throws IOException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         FileWriter myWriter = new FileWriter(filename, true);
         String text="LOG "+  now.toString() + " " + weather.getCity().getName() + " " + weather.getCity().getCountryCode()+ "\n";
         myWriter.write(text);
         myWriter.close();
+        return text;
     }
 
-    public void getCols() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("cities.txt"));
+    public void getCols(String Filename) throws IOException {
+        try{
+        BufferedReader reader = new BufferedReader(new FileReader(Filename));
         int lines = 0;
         while (reader.readLine() != null) lines++;
         reader.close();
         cols=lines;
+        }
+        catch (IOException e){
+            e.printStackTrace();
+            e=new FileNotFoundException("The file you are trying to open doesn't exist");
+            throw e;
+        }
     }
 
     public boolean checkExistence(City city, String file) throws FileNotFoundException {
         try {
+            File myObj = new File(file);
+            Scanner myReader = new Scanner(myObj);
+            String[] buffer;
+            while (myReader.hasNextLine())
+            {
+                String data=myReader.nextLine();
+                buffer=data.split("\t");
+                if (city.getName().equals(buffer[4]))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        catch (FileNotFoundException e){
+            e.printStackTrace();
+            e=new FileNotFoundException("The file you are trying to open doesn't exist");
+            throw e;
+        }
+        /*try {
             File myObj = new File(file);
             Scanner myReader = new Scanner(myObj);
             String[][] cityInfo =new String[rows][cols];
@@ -67,11 +95,11 @@ public class Logger {
             e.printStackTrace();
             e=new FileNotFoundException("The file you are trying to open doesn't exist");
             throw e;
-        }
+        }*/
     }
 
     public void addNewCity(City city) throws IOException {
-        getCols();
+        getCols(cityfilename);
         if (checkExistence(city, "cities.txt"))
         {
             FileWriter myWriter = new FileWriter(cityfilename, true);

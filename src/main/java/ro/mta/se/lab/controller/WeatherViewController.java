@@ -14,7 +14,9 @@ import ro.mta.se.lab.model.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.awt.*;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
@@ -22,8 +24,13 @@ import java.util.Scanner;
 public class WeatherViewController {
 
     ObservableList<String> cityList= FXCollections.observableArrayList();
-    ObservableList<String> countryList;
+    ObservableList<String> countryList= FXCollections.observableArrayList();
 
+    /***
+     * This is the constructor of the controller which is initiated in the main
+     * class with the list of the countries from the file
+     * @param countryList
+     */
     public WeatherViewController(ObservableList<String> countryList) {
         this.countryList = countryList;
     }
@@ -49,7 +56,11 @@ public class WeatherViewController {
     @FXML
     private Label wind;
 
-
+    /***
+     *
+     * @param e
+     * @throws IOException
+     */
     @FXML
     public void buttonPressed(KeyEvent e) throws IOException {
         if(e.getCode() == KeyCode.ENTER)
@@ -63,7 +74,7 @@ public class WeatherViewController {
             loadImage(code);
             City current= new City();
             Weather cw=new Weather();
-            current= cw.getCity();
+            current=p.getCity();
             cw=p.getWeather();
             String s="";
             cityName.setText(current.getName());
@@ -81,26 +92,37 @@ public class WeatherViewController {
         }
     }
 
-
+    /***
+     *
+     * @param countryCode
+     * @throws FileNotFoundException
+     */
     public void getCities(String countryCode) throws FileNotFoundException {
-        File myObj = new File("cities.txt");
-        Scanner myReader = new Scanner(myObj);
-        String[] cityInfo =new String[5];
-        int j=0;
-        cityList.clear();
-        while (myReader.hasNext()){
-            for (int i=0; i<5; i++)
+        try {
+            File myObj = new File("cities.txt");
+            Scanner myReader = new Scanner(myObj);
+            String[] buffer;
+            while (myReader.hasNextLine())
             {
-                String data = myReader.next();
-                cityInfo[i]=data;
+                String data=myReader.nextLine();
+                buffer=data.split("\t");
+                if (buffer[4].equals(countryCode)){
+                    cityList.add(buffer[1]);
+                }
             }
-            if (cityInfo[4].equals(countryCode)){
-                cityList.add(cityInfo[1]);
-            }
+        }
+        catch (FileNotFoundException e){
+            e.printStackTrace();
+            e=new FileNotFoundException("The file you are trying to open doesn't exist");
+            throw e;
         }
     }
 
-
+    /***
+     *
+     * @param e
+     * @throws FileNotFoundException
+     */
     @FXML
     public void countrySelected(Event e) throws FileNotFoundException {
         cityBox.getItems().clear();
@@ -111,7 +133,11 @@ public class WeatherViewController {
 
     }
 
-
+    /***
+     *
+     * @param e
+     * @throws IOException
+     */
     @FXML
     public void citySelected(Event e) throws IOException {
         //System.out.println("Fetching weather for "+ cityBox.getValue().toString());
@@ -124,7 +150,7 @@ public class WeatherViewController {
             loadImage(code);
             City current= new City();
             Weather cw=new Weather();
-            current= cw.getCity();
+            current=p.getCity();
             cw=p.getWeather();
             String s="";
             cityName.setText(current.getName());
@@ -143,13 +169,20 @@ public class WeatherViewController {
         }
     }
 
-
+    /***
+     *
+     * @throws FileNotFoundException
+     */
     @FXML
     private void initialize() throws FileNotFoundException {
         countryBox.setItems(countryList);
     }
 
-
+    /***
+     *
+     * @param code
+     * @throws FileNotFoundException
+     */
     @FXML
     private void loadImage(String code) throws FileNotFoundException {
         String url1="http://openweathermap.org/img/w/"+code+".png";
