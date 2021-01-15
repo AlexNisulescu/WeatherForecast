@@ -7,9 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ro.mta.se.lab.controller.WeatherViewController;
-import ro.mta.se.lab.model.City;
-import ro.mta.se.lab.model.WeatherGather;
-import ro.mta.se.lab.model.jsonParser;
 
 import java.io.*;
 import java.util.Scanner;
