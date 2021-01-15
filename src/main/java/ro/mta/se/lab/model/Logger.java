@@ -39,33 +39,40 @@ public class Logger {
         cols=lines;
     }
 
-    public boolean checkExistence(City city) throws FileNotFoundException {
-        File myObj = new File(cityfilename);
-        Scanner myReader = new Scanner(myObj);
-        String[][] cityInfo =new String[rows][cols];
-        int j=0;
-        while (myReader.hasNext()) {
-            for (int i = 0; i < rows; i++) {
-                if (i==2)
+    public boolean checkExistence(City city, String file) throws FileNotFoundException {
+        try {
+            File myObj = new File(file);
+            Scanner myReader = new Scanner(myObj);
+            String[][] cityInfo =new String[rows][cols];
+            int j=0;
+            while (myReader.hasNext()) {
+                for (int i = 0; i < rows; i++) {
+                    if (i==2)
+                    {
+                        String data=myReader.next();
+                    }
+                    else {
+                        cityInfo[i][j] = myReader.next();
+                    }
+                }
+                if (city.getName().equals(cityInfo[4][j]))
                 {
-                    String data=myReader.next();
+                    return false;
                 }
-                else {
-                    cityInfo[i][j] = myReader.next();
-                }
+                j++;
             }
-            if (city.getName().equals(cityInfo[4][j]))
-            {
-                return false;
-            }
-            j++;
+            return true;
         }
-        return true;
+        catch (FileNotFoundException e){
+            e.printStackTrace();
+            e=new FileNotFoundException("The file you are trying to open doesn't exist");
+            throw e;
+        }
     }
 
     public void addNewCity(City city) throws IOException {
         getCols();
-        if (checkExistence(city))
+        if (checkExistence(city, "cities.txt"))
         {
             FileWriter myWriter = new FileWriter(cityfilename, true);
             String text ="\n" + city.getId() + "\t" + city.getName() + "\t" + city.getLat() + "\t" + city.getLon() + "\t" + city.getCountryCode();

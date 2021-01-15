@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="UMLDesignTool">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/UMLDesignTool.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
