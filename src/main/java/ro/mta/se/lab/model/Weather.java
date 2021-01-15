@@ -72,4 +72,14 @@ public class Weather {
     public City getCity() {
         return city;
     }
+
+    public float convertToFahrenheit(){
+        float k=(float) (this.temperature*9/5+32);
+        return k;
+    }
+
+    public float convertToKelvin(){
+        float fh= (float) (this.temperature+273.15);
+        return fh;
+    }
 }
