@@ -1,5 +1,7 @@
 package ro.mta.se.lab.model;
 
+import java.lang.invoke.WrongMethodTypeException;
+
 public class Weather {
     private int precipitations;
     private float temperature;
@@ -9,6 +11,10 @@ public class Weather {
     private City city;
 
     public Weather() {
+    }
+
+    public Weather(City c){
+        this.city=c;
     }
 
     public Weather(int precipitations, float temperature, float feels_like, String weather, City city) {
