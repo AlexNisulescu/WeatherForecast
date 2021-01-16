@@ -51,12 +51,12 @@ class WeatherTest {
     @Test
     void convertToKelvin() {
         weather.setTemperature((float)12.3);
-        assertEquals((float)285.45, weather.convertToKelvin());
+        assertEquals((float)285.45, weather.convertToKelvin(weather.getTemperature()));
     }
 
     @Test
     void convertToFahrenheit() {
         weather.setTemperature((float)12.3);
-        assertEquals((float)54.14, weather.convertToFahrenheit());
+        assertEquals((float)54.14, weather.convertToFahrenheit(weather.getTemperature()));
     }
 }

@@ -29,11 +29,13 @@ public class WeatherViewController {
      * ------------------------------------------------------------------------
      * From here start all of the variables
      */
+    Weather cw;
     /***
      * Both ObservableList's are here
      */
     ObservableList<String> cityList= FXCollections.observableArrayList();
-    ObservableList<String> countryList= FXCollections.observableArrayList();
+    ObservableList<String> countryList;
+    ObservableList<String> unitsList=FXCollections.observableArrayList();
 
     /***
      * All FXML's are here
@@ -42,6 +44,8 @@ public class WeatherViewController {
     private ChoiceBox cityBox;
     @FXML
     private ChoiceBox countryBox;
+    @FXML
+    private ChoiceBox unitsBox;
     @FXML
     private TextField textField;
     @FXML
@@ -71,6 +75,50 @@ public class WeatherViewController {
      */
     public WeatherViewController(ObservableList<String> countryList) {
         this.countryList = countryList;
+        this.unitsList.add("Celsius");
+        this.unitsList.add("Fahrenheit");
+        this.unitsList.add("Kelvin");
+        cw=new Weather();
+    }
+
+    public void setWeather() throws IOException {
+        String s;
+        if (unitsBox.getValue().toString().equals("Celsius")) {
+            s = "Temperature: " + cw.getTemperature() + "°C";
+            temp.setText(s);
+            s = "Feels like: " + cw.getFeels_like() + "°C";
+            feels.setText(s);
+            s = "Humidity: " + cw.getPrecipitations();
+            precipit.setText(s);
+            s = "Wind: " + cw.getWind() + "m/s";
+            wind.setText(s);
+            Logger l = new Logger();
+            l.writeLogs(cw);
+        }
+        else if (unitsBox.getValue().toString().equals("Fahrenheit")){
+            s = "Temperature: " + cw.convertToFahrenheit(cw.getTemperature()) + "°F";
+            temp.setText(s);
+            s = "Feels like: " + cw.convertToFahrenheit(cw.getFeels_like()) + "°F";
+            feels.setText(s);
+            s = "Humidity: " + cw.getPrecipitations();
+            precipit.setText(s);
+            s = "Wind: " + cw.getWind() + "m/s";
+            wind.setText(s);
+            Logger l = new Logger();
+            l.writeLogs(cw);
+        }
+        else if (unitsBox.getValue().toString().equals("Kelvin")){
+            s = "Temperature: " + cw.convertToKelvin(cw.getTemperature()) + "K";
+            temp.setText(s);
+            s = "Feels like: " + cw.convertToKelvin(cw.getFeels_like()) + "°K";
+            feels.setText(s);
+            s = "Humidity: " + cw.getPrecipitations();
+            precipit.setText(s);
+            s = "Wind: " + cw.getWind() + "m/s";
+            wind.setText(s);
+            Logger l = new Logger();
+            l.writeLogs(cw);
+        }
     }
 
     /***
@@ -97,18 +145,13 @@ public class WeatherViewController {
             Weather cw=new Weather();
             current=p.getCity();
             cw=p.getWeather();
+            setWeather();
             String s="";
             cityName.setText(current.getName());
             s=cw.getWeather();
             weather.setText(s);
-            s="Temperature: "+cw.getTemperature()+"°C";
-            temp.setText(s);
-            s="Feels like: "+cw.getFeels_like()+"°C";
-            feels.setText(s);
-            s="Humidity: "+cw.getPrecipitations();
-            precipit.setText(s);
+            setWeather();
             Logger l=new Logger();
-            l.writeLogs(cw);
             l.addNewCity(cw.getCity());
         }
     }
@@ -175,23 +218,48 @@ public class WeatherViewController {
             String code = p.getWeatherIconCode();
             loadImage(code);
             City current= new City();
-            Weather cw=new Weather();
             current=p.getCity();
             cw=p.getWeather();
             String s="";
             cityName.setText(current.getName());
             s=cw.getWeather();
             weather.setText(s);
-            s="Temperature: "+cw.getTemperature()+"°C";
-            temp.setText(s);
-            s="Feels like: "+cw.getFeels_like()+"°C";
-            feels.setText(s);
-            s="Humidity: "+cw.getPrecipitations();
-            precipit.setText(s);
-            s="Wind: "+ cw.getWind() + "m/s";
-            wind.setText(s);
-            Logger l=new Logger();
-            l.writeLogs(cw);
+            if (unitsBox.getValue().toString().equals("Celsius")) {
+                s = "Temperature: " + cw.getTemperature() + "°C";
+                temp.setText(s);
+                s = "Feels like: " + cw.getFeels_like() + "°C";
+                feels.setText(s);
+                s = "Humidity: " + cw.getPrecipitations();
+                precipit.setText(s);
+                s = "Wind: " + cw.getWind() + "m/s";
+                wind.setText(s);
+                Logger l = new Logger();
+                l.writeLogs(cw);
+            }
+            else if (unitsBox.getValue().toString().equals("Fahrenheit")){
+                s = "Temperature: " + cw.convertToFahrenheit(cw.getTemperature()) + "°F";
+                temp.setText(s);
+                s = "Feels like: " + cw.convertToFahrenheit(cw.getFeels_like()) + "°F";
+                feels.setText(s);
+                s = "Humidity: " + cw.getPrecipitations();
+                precipit.setText(s);
+                s = "Wind: " + cw.getWind() + "m/s";
+                wind.setText(s);
+                Logger l = new Logger();
+                l.writeLogs(cw);
+            }
+            else if (unitsBox.getValue().toString().equals("Kelvin")){
+                s = "Temperature: " + cw.convertToKelvin(cw.getTemperature()) + "K";
+                temp.setText(s);
+                s = "Feels like: " + cw.convertToKelvin(cw.getFeels_like()) + "°K";
+                feels.setText(s);
+                s = "Humidity: " + cw.getPrecipitations();
+                precipit.setText(s);
+                s = "Wind: " + cw.getWind() + "m/s";
+                wind.setText(s);
+                Logger l = new Logger();
+                l.writeLogs(cw);
+            }
         }
     }
 
@@ -203,6 +271,8 @@ public class WeatherViewController {
     @FXML
     private void initialize() throws FileNotFoundException {
         countryBox.setItems(countryList);
+        unitsBox.setItems(unitsList);
+        unitsBox.setValue(unitsList.get(0));
     }
 
     /***
@@ -217,6 +287,15 @@ public class WeatherViewController {
         String url1="http://openweathermap.org/img/w/"+code+".png";
         Image img = new Image(url1, true);
         weatherImg.setImage(img);
+    }
+
+    @FXML
+    public void changeUnits(Event e) throws IOException {
+        if (!cityName.getText().isEmpty())
+        {
+            setWeather();
+        }
+
     }
 
 }

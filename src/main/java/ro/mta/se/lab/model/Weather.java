@@ -144,7 +144,7 @@ public class Weather {
      * This method converts celsius to fahrenheit
      * @return fahrenheit temperature
      */
-    public float convertToFahrenheit(){
+    public float convertToFahrenheit(float temp){
         float k=(float) (this.temperature*9/5+32);
         return k;
     }
@@ -153,7 +153,7 @@ public class Weather {
      * This method converts celsius to kelvin
      * @return kelvin temperature
      */
-    public float convertToKelvin(){
+    public float convertToKelvin(float temp){
         float fh= (float) (this.temperature+273.15);
         return fh;
     }

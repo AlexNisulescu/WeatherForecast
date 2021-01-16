@@ -11,7 +11,7 @@
       <ChoiceBox fx:id="countryBox" layoutX="100.0" layoutY="85.0" onAction="#countrySelected" prefWidth="150.0" />
       <Label layoutX="320.0" layoutY="88.0" text="City" />
       <Label layoutX="50.0" layoutY="88.0" text="Country" />
-      <Label layoutX="160.0" layoutY="120.0" text="Search for the city you want if it's not in the choice box:">
+      <Label layoutX="150.0" layoutY="130.0" text="Search for the city you want if it's not in the choice box:">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font></Label>
@@ -20,7 +20,7 @@
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="textField" layoutX="226.0" layoutY="143.0" onKeyPressed="#buttonPressed" />
+      <TextField fx:id="textField" layoutX="226.0" layoutY="155.0" onKeyPressed="#buttonPressed" />
       <ChoiceBox fx:id="cityBox" layoutX="350.0" layoutY="85.0" onAction="#citySelected" prefWidth="150.0" />
       <ImageView fx:id="weatherImg" fitHeight="54.0" fitWidth="69.0" layoutX="60.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="cityName" layoutX="45.0" layoutY="250.0">
@@ -35,5 +35,7 @@
       <Label fx:id="feels" layoutX="180.0" layoutY="315.0" />
       <Label fx:id="precipit" layoutX="180.0" layoutY="340.0" />
       <Label fx:id="wind" layoutX="180.0" layoutY="365.0" />
+      <ChoiceBox fx:id="unitsBox" layoutX="400.0" layoutY="264.0" prefWidth="150.0" onAction="#changeUnits"/>
+      <Label layoutX="440.0" layoutY="241.0" text="Units System" />
    </children>
 </AnchorPane>
