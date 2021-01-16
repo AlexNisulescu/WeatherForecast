@@ -38,7 +38,7 @@ public class JsonParser {
      */
     public void readWeatherJSON() throws IOException {
         String data = "";
-        data = new String(Files.readAllBytes(Paths.get("F:\\Ingineria Programarii\\Tema 2 - Weather Forecast App\\weather.json")));
+        data = new String(Files.readAllBytes(Paths.get("weather.json")));
 
         JsonObject obj = Json.parse(data).asObject();
 
