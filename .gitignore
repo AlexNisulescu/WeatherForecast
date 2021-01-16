@@ -1,7 +1,7 @@
 .out/
-*/target/**
+target/*
 *.txt
-*.jpg
-*.png
 *.json
 *.log
+*.png
+*.jpg

@@ -1,26 +1,41 @@
 package ro.mta.se.lab.model;
 
-
 import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
-import com.eclipsesource.json.JsonValue;
-
 import java.io.*;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.net.HttpURLConnection;
-import java.net.URL;
+
+/***
+ *  This is the class that is used to parse the json file that is returned
+ *  from the Openweathermap API
+ *
+ * @author Alexandru Nisulescu
+ */
 
 public class JsonParser {
+    /***
+     * ------------------------------------------------------------------------
+     * From here start all of the variables
+     */
     private City city=new City();
     private Weather weather=new Weather();
     String weatherIconCode;
 
+    /***
+     * ------------------------------------------------------------------------
+     * From here start all of the methods
+     */
     public JsonParser() {
     }
 
+    /***
+     * This is the method that needs to be called to read the Json file and
+     * load all the data that is used by the application
+     *
+     * @throws IOException
+     */
     public void readWeatherJSON() throws IOException {
         String data = "";
         data = new String(Files.readAllBytes(Paths.get("F:\\Ingineria Programarii\\Tema 2 - Weather Forecast App\\weather.json")));
@@ -46,18 +61,40 @@ public class JsonParser {
 
     }
 
+    /***
+     * ------------------------------------------------------------------------
+     * All getters start from here
+     *
+     */
+    /***
+     * This is the method that need to be called in order to get the
+     * icon code for that specific weather
+     *
+     * @return the weatherIconCode
+     */
     public String getWeatherIconCode()
     {
         return weatherIconCode;
     }
 
+    /***
+     * This is the method that need to be called in order to get the
+     * city for which the weather is
+     *
+     * @return City
+     */
     public City getCity() {
         return city;
     }
 
+    /***
+     * This is the method that need to be called in order to get the
+     * weather for which the selected city
+     *
+     * @return Weather
+     */
     public Weather getWeather() {
         return weather;
     }
-
 
 }
