@@ -31,7 +31,7 @@ public class WeatherViewController {
      */
     Weather cw;
     /***
-     * Both ObservableList's are here
+     * All ObservableList's are here
      */
     ObservableList<String> cityList= FXCollections.observableArrayList();
     ObservableList<String> countryList;
@@ -81,6 +81,11 @@ public class WeatherViewController {
         cw=new Weather();
     }
 
+    /***
+     *  This is the method that sets the weather labels to the interface
+     *
+     * @throws IOException
+     */
     public void setWeather() throws IOException {
         String s;
         if (unitsBox.getValue().toString().equals("Celsius")) {
@@ -187,7 +192,7 @@ public class WeatherViewController {
      *  Is the event that gets triggered when the user selects a country.
      *  This calls getCities() method
      *
-     * @param e is the event that triggeres this action
+     * @param e is the event that triggers this action
      * @throws FileNotFoundException
      */
     @FXML
@@ -201,10 +206,10 @@ public class WeatherViewController {
     }
 
     /***
-     *Is the event that gets triggered when the use selects a city
+     *  Is the event that gets triggered when the use selects a city
      *  This is the function that makes the api request if the user selects the
      *  city from the choicebox from the interface
-     * @param e is the event that triggeres this action
+     * @param e is the event that triggers this action
      * @throws IOException
      */
     @FXML
@@ -289,6 +294,13 @@ public class WeatherViewController {
         weatherImg.setImage(img);
     }
 
+    /***
+     *  Is the event that gets triggered when the use selects a unit
+     *  This is the function that changes the units displayed only if there is
+     *  a shown forecast to the interface
+     * @param e is the event that triggers this action
+     * @throws IOException
+     */
     @FXML
     public void changeUnits(Event e) throws IOException {
         if (!cityName.getText().isEmpty())

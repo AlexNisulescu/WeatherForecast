@@ -142,6 +142,8 @@ public class Weather {
 
     /***
      * This method converts celsius to fahrenheit
+     *
+     * @param temp is the temperature you want converted to F
      * @return fahrenheit temperature
      */
     public float convertToFahrenheit(float temp){
@@ -151,6 +153,8 @@ public class Weather {
 
     /***
      * This method converts celsius to kelvin
+     *
+     * @param temp is the temperature you want converted to K
      * @return kelvin temperature
      */
     public float convertToKelvin(float temp){
