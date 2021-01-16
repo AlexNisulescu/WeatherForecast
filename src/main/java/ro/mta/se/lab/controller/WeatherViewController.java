@@ -10,31 +10,34 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import ro.mta.se.lab.model.*;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-import java.awt.*;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
+
+/***
+ * This is the controller class of the application. Everything that changes in
+ * the visual app takes place first here
+ * @author Alex Nisulescu
+ */
 public class WeatherViewController {
 
+    /***
+     * ------------------------------------------------------------------------
+     * From here start all of the variables
+     */
+    /***
+     * Both ObservableList's are here
+     */
     ObservableList<String> cityList= FXCollections.observableArrayList();
     ObservableList<String> countryList= FXCollections.observableArrayList();
 
     /***
-     * This is the constructor of the controller which is initiated in the main
-     * class with the list of the countries from the file
-     * @param countryList
+     * All FXML's are here
      */
-    public WeatherViewController(ObservableList<String> countryList) {
-        this.countryList = countryList;
-    }
-
     @FXML
     private ChoiceBox cityBox;
     @FXML
@@ -57,8 +60,26 @@ public class WeatherViewController {
     private Label wind;
 
     /***
+     * ------------------------------------------------------------------------
+     * From here start all of the methods
+     */
+    /***
+     * This is the constructor of the controller which is initiated in the main
+     * class with the list of the countries from the file
+     * @param countryList is the ObservableList used to initiate the first
+     *                    choicebox
+     */
+    public WeatherViewController(ObservableList<String> countryList) {
+        this.countryList = countryList;
+    }
+
+    /***
+     *  Is the event that gets triggered when user searches a city.
+     *  This is the function that makes the api request if the user uses the
+     *  search box from the interface
      *
-     * @param e
+     * @param e Is the event that triggers the action
+     *          The method only does something if you press ENTER
      * @throws IOException
      */
     @FXML
@@ -93,8 +114,9 @@ public class WeatherViewController {
     }
 
     /***
+     *  Is the method that sets the list of cities to the city choicebox
      *
-     * @param countryCode
+     * @param countryCode Is the country code of the selected country
      * @throws FileNotFoundException
      */
     public void getCities(String countryCode) throws FileNotFoundException {
@@ -119,8 +141,10 @@ public class WeatherViewController {
     }
 
     /***
+     *  Is the event that gets triggered when the user selects a country.
+     *  This calls getCities() method
      *
-     * @param e
+     * @param e is the event that triggeres this action
      * @throws FileNotFoundException
      */
     @FXML
@@ -134,8 +158,10 @@ public class WeatherViewController {
     }
 
     /***
-     *
-     * @param e
+     *Is the event that gets triggered when the use selects a city
+     *  This is the function that makes the api request if the user selects the
+     *  city from the choicebox from the interface
+     * @param e is the event that triggeres this action
      * @throws IOException
      */
     @FXML
@@ -170,6 +196,7 @@ public class WeatherViewController {
     }
 
     /***
+     *  This is the event that initializes the interface with the country list
      *
      * @throws FileNotFoundException
      */
@@ -179,8 +206,10 @@ public class WeatherViewController {
     }
 
     /***
+     *  This is the event that downloads the image from the API and loads it
+     *  in the interface
      *
-     * @param code
+     * @param code is the weather icon code
      * @throws FileNotFoundException
      */
     @FXML
